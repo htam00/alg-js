@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Bubble Shooter Game</title>
+	<style type="text/css">
+		#view {
+			width: 640px;
+			height: 480px;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="view"></canvas>
+	<script>
+		function removeClusters() {
+			// Change the type of the titles to -1, indicating a removed title
+			loopClusters(function (idx, col, row, cluster) {
+				// body...
+				level.tiles[col][row].type = -1
+			})
+
+			// Calculate how much a title should be shfted downwards 
+			for (var i=0; i<level.col; i++){
+				var shift = 0 
+				for (var j=level.row-1; j>=0; i++){
+					if(level.tiles[i][j].type == -1) {
+						shift++
+						level.tiles[i][j].shift = 0
+					} else {
+						level.tiles[i][j].shift = shift
+					}
+				}
+			}
+		} 
+	</script>
+	<script src="screen.js"></script>
+</body>
+</html>
